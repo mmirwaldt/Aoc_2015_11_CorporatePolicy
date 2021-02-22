@@ -10,7 +10,7 @@ public class DefaultPasswordGenerator implements PasswordGenerator {
     @Override
     public String generateNextPassword(String oldPassword) {
         String currentPassword = oldPassword;
-        while(!isValidPassword(currentPassword) && !currentPassword.equals(LAST_INVALID_PASSWORD)){
+        do {
             for (int index = currentPassword.length()-1; 0 <= index; index--) {
                 String currentLetter = currentPassword.substring(index, index + 1);
                 if(!currentLetter.equals("z")) {
@@ -24,7 +24,7 @@ public class DefaultPasswordGenerator implements PasswordGenerator {
                     break;
                 }
             }
-        }
+        } while(!isValidPassword(currentPassword) && !currentPassword.equals(LAST_INVALID_PASSWORD));
         if(currentPassword.equals(LAST_INVALID_PASSWORD)) {
             throw new IllegalArgumentException("Cannot find a next password for '" + oldPassword + "'.");
         } else {
