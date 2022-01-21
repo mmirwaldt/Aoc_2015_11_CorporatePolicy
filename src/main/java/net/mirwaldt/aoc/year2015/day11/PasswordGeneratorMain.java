@@ -1,4 +1,4 @@
-package net.mirwaldt;
+package net.mirwaldt.aoc.year2015.day11;
 
 public class PasswordGeneratorMain {
     public static void main(String[] args) {
